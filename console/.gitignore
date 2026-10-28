@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Local development points at a deployed stack; never commit its values.
+public/config.json

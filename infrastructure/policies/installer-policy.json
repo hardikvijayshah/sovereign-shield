@@ -1,0 +1,378 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ManageTheSovereignShieldStack",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:UpdateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:CreateChangeSet",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:DeleteChangeSet",
+        "cloudformation:DescribeChangeSet",
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:DescribeStackResources",
+        "cloudformation:GetTemplate",
+        "cloudformation:GetTemplateSummary",
+        "cloudformation:ListStackResources"
+      ],
+      "Resource": "arn:aws:cloudformation:*:${AccountId}:stack/${StackName}/*"
+    },
+    {
+      "Sid": "ManageTheMemberRoleStackSet",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStackSet",
+        "cloudformation:UpdateStackSet",
+        "cloudformation:DeleteStackSet",
+        "cloudformation:DescribeStackSet",
+        "cloudformation:DescribeStackSetOperation",
+        "cloudformation:CreateStackInstances",
+        "cloudformation:UpdateStackInstances",
+        "cloudformation:DeleteStackInstances",
+        "cloudformation:ListStackInstances",
+        "cloudformation:ListStackSetOperations",
+        "cloudformation:TagResource",
+        "cloudformation:UntagResource",
+        "cloudformation:ListStackSetOperationResults"
+      ],
+      "Resource": [
+        "arn:aws:cloudformation:*:${AccountId}:stackset/sovereign-shield-member-*",
+        "arn:aws:cloudformation:*:${AccountId}:stackset-target/sovereign-shield-member-*"
+      ]
+    },
+    {
+      "Sid": "ReadOrganizationForStackSets",
+      "Effect": "Allow",
+      "Action": [
+        "organizations:DescribeOrganization",
+        "organizations:ListAWSServiceAccessForOrganization",
+        "organizations:ListDelegatedAdministrators"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "StackOnboardingSchedule",
+      "Effect": "Allow",
+      "Action": [
+        "events:PutRule",
+        "events:DeleteRule",
+        "events:DescribeRule",
+        "events:PutTargets",
+        "events:RemoveTargets",
+        "events:TagResource",
+        "events:UntagResource",
+        "events:ListTagsForResource"
+      ],
+      "Resource": "arn:aws:events:*:${AccountId}:rule/${StackName}-*"
+    },
+    {
+      "Sid": "ValidateTemplates",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:ValidateTemplate",
+        "cloudformation:GetTemplateSummary",
+        "cloudformation:ListStacks"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ReadReleaseArtifacts",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::${ArtifactBucketPrefix}-*/releases/*"
+    },
+    {
+      "Sid": "StackRoles",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:GetRole",
+        "iam:PassRole",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:UpdateAssumeRolePolicy",
+        "iam:UpdateRoleDescription",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:ListRoleTags",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies"
+      ],
+      "Resource": "arn:aws:iam::${AccountId}:role/${StackName}-*"
+    },
+    {
+      "Sid": "StackFunctions",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:DeleteFunction",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:AddPermission",
+        "lambda:RemovePermission",
+        "lambda:InvokeFunction",
+        "lambda:TagResource",
+        "lambda:UntagResource",
+        "lambda:ListTags",
+        "lambda:GetPolicy",
+        "lambda:ListVersionsByFunction",
+        "lambda:GetFunctionCodeSigningConfig",
+        "lambda:GetRuntimeManagementConfig",
+        "lambda:GetFunctionRecursionConfig"
+      ],
+      "Resource": "arn:aws:lambda:*:${AccountId}:function:${StackName}-*"
+    },
+    {
+      "Sid": "StackTables",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:UpdateTable",
+        "dynamodb:DescribeContinuousBackups",
+        "dynamodb:UpdateContinuousBackups",
+        "dynamodb:DescribeTimeToLive",
+        "dynamodb:UpdateTimeToLive",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:ListTagsOfResource",
+        "dynamodb:DescribeContributorInsights",
+        "dynamodb:DescribeKinesisStreamingDestination",
+        "dynamodb:DescribeTableReplicaAutoScaling"
+      ],
+      "Resource": "arn:aws:dynamodb:*:${AccountId}:table/${StackName}-*"
+    },
+    {
+      "Sid": "StackBuckets",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
+        "s3:PutBucketPolicy",
+        "s3:GetBucketPolicy",
+        "s3:DeleteBucketPolicy",
+        "s3:PutEncryptionConfiguration",
+        "s3:PutBucketVersioning",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketOwnershipControls",
+        "s3:PutLifecycleConfiguration",
+        "s3:PutBucketTagging",
+        "s3:GetBucketTagging",
+        "s3:GetBucketVersioning",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetBucketOwnershipControls",
+        "s3:GetBucketLocation",
+        "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::${StackNameLowercase}-*"
+    },
+    {
+      "Sid": "StackLogGroups",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:DeleteLogGroup",
+        "logs:PutRetentionPolicy",
+        "logs:AssociateKmsKey",
+        "logs:TagResource",
+        "logs:UntagResource",
+        "logs:ListTagsForResource",
+        "logs:PutMetricFilter",
+        "logs:DeleteMetricFilter",
+        "logs:DescribeMetricFilters",
+        "logs:DeleteRetentionPolicy",
+        "logs:DisassociateKmsKey"
+      ],
+      "Resource": "arn:aws:logs:*:${AccountId}:log-group:${StackName}-*"
+    },
+    {
+      "Sid": "StackTopics",
+      "Effect": "Allow",
+      "Action": [
+        "sns:CreateTopic",
+        "sns:DeleteTopic",
+        "sns:GetTopicAttributes",
+        "sns:SetTopicAttributes",
+        "sns:Subscribe",
+        "sns:Unsubscribe",
+        "sns:TagResource",
+        "sns:UntagResource",
+        "sns:ListTagsForResource",
+        "sns:GetSubscriptionAttributes",
+        "sns:SetSubscriptionAttributes",
+        "sns:ListSubscriptionsByTopic"
+      ],
+      "Resource": "arn:aws:sns:*:${AccountId}:${StackName}-*"
+    },
+    {
+      "Sid": "StackKeyAlias",
+      "Effect": "Allow",
+      "Action": [
+        "kms:CreateAlias",
+        "kms:DeleteAlias",
+        "kms:UpdateAlias"
+      ],
+      "Resource": [
+        "arn:aws:kms:*:${AccountId}:alias/${DeploymentPrefix}-data",
+        "arn:aws:kms:*:${AccountId}:key/*"
+      ]
+    },
+    {
+      "Sid": "StackScheduleGroupAndDashboard",
+      "Effect": "Allow",
+      "Action": [
+        "scheduler:CreateScheduleGroup",
+        "scheduler:DeleteScheduleGroup",
+        "scheduler:GetScheduleGroup",
+        "scheduler:TagResource",
+        "cloudwatch:PutDashboard",
+        "cloudwatch:DeleteDashboards",
+        "scheduler:UntagResource",
+        "scheduler:ListTagsForResource",
+        "cloudwatch:GetDashboard"
+      ],
+      "Resource": [
+        "arn:aws:scheduler:*:${AccountId}:schedule-group/${DeploymentPrefix}-scans",
+        "arn:aws:cloudwatch::${AccountId}:dashboard/${DeploymentPrefix}-*-operations"
+      ]
+    },
+    {
+      "Sid": "DeleteSchedulesWithTheScheduleGroup",
+      "Effect": "Allow",
+      "Action": [
+        "scheduler:GetSchedule",
+        "scheduler:DeleteSchedule"
+      ],
+      "Resource": "arn:aws:scheduler:*:${AccountId}:schedule/${DeploymentPrefix}-scans/*"
+    },
+    {
+      "Sid": "ServicesWithGeneratedIdentifiers",
+      "Effect": "Allow",
+      "Action": [
+        "kms:CreateKey",
+        "kms:DescribeKey",
+        "kms:PutKeyPolicy",
+        "kms:GetKeyPolicy",
+        "kms:EnableKeyRotation",
+        "kms:GetKeyRotationStatus",
+        "kms:TagResource",
+        "kms:ScheduleKeyDeletion",
+        "kms:CreateGrant",
+        "kms:Decrypt",
+        "kms:GenerateDataKey*",
+        "states:CreateStateMachine",
+        "states:DeleteStateMachine",
+        "states:UpdateStateMachine",
+        "states:DescribeStateMachine",
+        "states:TagResource",
+        "cognito-idp:CreateUserPool",
+        "cognito-idp:DeleteUserPool",
+        "cognito-idp:UpdateUserPool",
+        "cognito-idp:DescribeUserPool",
+        "cognito-idp:CreateUserPoolClient",
+        "cognito-idp:DeleteUserPoolClient",
+        "cognito-idp:UpdateUserPoolClient",
+        "cognito-idp:DescribeUserPoolClient",
+        "cognito-idp:CreateUserPoolDomain",
+        "cognito-idp:DeleteUserPoolDomain",
+        "cognito-idp:DescribeUserPoolDomain",
+        "cognito-idp:CreateGroup",
+        "cognito-idp:DeleteGroup",
+        "cognito-idp:AdminCreateUser",
+        "cognito-idp:AdminDeleteUser",
+        "cognito-idp:AdminAddUserToGroup",
+        "cognito-idp:AdminRemoveUserFromGroup",
+        "cognito-idp:TagResource",
+        "apigateway:POST",
+        "apigateway:GET",
+        "apigateway:PATCH",
+        "apigateway:PUT",
+        "apigateway:DELETE",
+        "cloudfront:CreateDistribution",
+        "cloudfront:UpdateDistribution",
+        "cloudfront:DeleteDistribution",
+        "cloudfront:GetDistribution",
+        "cloudfront:GetDistributionConfig",
+        "cloudfront:TagResource",
+        "cloudfront:CreateOriginAccessControl",
+        "cloudfront:DeleteOriginAccessControl",
+        "cloudfront:GetOriginAccessControl",
+        "cloudfront:CreateResponseHeadersPolicy",
+        "cloudfront:UpdateResponseHeadersPolicy",
+        "cloudfront:DeleteResponseHeadersPolicy",
+        "cloudfront:GetResponseHeadersPolicy",
+        "cloudwatch:PutMetricAlarm",
+        "cloudwatch:DeleteAlarms",
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:TagResource",
+        "xray:PutTraceSegments",
+        "kms:UntagResource",
+        "kms:ListResourceTags",
+        "kms:ListAliases",
+        "kms:UpdateKeyDescription",
+        "states:UntagResource",
+        "states:ListTagsForResource",
+        "cognito-idp:UntagResource",
+        "cognito-idp:ListTagsForResource",
+        "cognito-idp:UpdateUserPoolDomain",
+        "cognito-idp:SetUserPoolMfaConfig",
+        "cognito-idp:GetUserPoolMfaConfig",
+        "cognito-idp:AdminGetUser",
+        "cloudfront:UntagResource",
+        "cloudfront:ListTagsForResource",
+        "cloudfront:UpdateOriginAccessControl",
+        "cloudfront:GetOriginAccessControlConfig",
+        "cloudfront:GetResponseHeadersPolicyConfig",
+        "cloudwatch:UntagResource",
+        "cloudwatch:ListTagsForResource",
+        "cognito-idp:GetGroup",
+        "cognito-idp:UpdateGroup",
+        "cognito-idp:AdminListGroupsForUser",
+        "apigateway:TagResource",
+        "apigateway:UntagResource",
+        "scheduler:ListSchedules"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "OptionalCostBudget",
+      "Effect": "Allow",
+      "Action": [
+        "budgets:ModifyBudget",
+        "budgets:ViewBudget",
+        "budgets:TagResource",
+        "budgets:UntagResource",
+        "budgets:ListTagsForResource"
+      ],
+      "Resource": "arn:aws:budgets::${AccountId}:budget/sovereign-shield-*"
+    },
+    {
+      "Sid": "StateMachineLogDelivery",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogDelivery",
+        "logs:GetLogDelivery",
+        "logs:UpdateLogDelivery",
+        "logs:DeleteLogDelivery",
+        "logs:ListLogDeliveries",
+        "logs:PutResourcePolicy",
+        "logs:DescribeResourcePolicies",
+        "logs:DescribeLogGroups"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

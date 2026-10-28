@@ -1,0 +1,6 @@
+{
+  "apiUrl": "https://<api-id>.execute-api.<region>.amazonaws.com",
+  "region": "<region>",
+  "cognitoDomain": "https://<prefix>-<account>.auth.<region>.amazoncognito.com",
+  "clientId": "<ConsoleClientId stack output>"
+}

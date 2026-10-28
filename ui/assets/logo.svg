@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F52BA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E90FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0.9" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0F52BA" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Shield body -->
+  <path d="M100 10 L175 45 L175 110 Q175 160 100 190 Q25 160 25 110 L25 45 Z"
+        fill="url(#shieldGrad)" filter="url(#shadow)" />
+  <!-- Inner shield highlight -->
+  <path d="M100 25 L162 55 L162 108 Q162 150 100 175 Q38 150 38 108 L38 55 Z"
+        fill="none" stroke="white" stroke-width="1.5" opacity="0.3" />
+  <!-- Globe circle -->
+  <circle cx="100" cy="100" r="42" fill="none" stroke="url(#globeGrad)" stroke-width="2.5" />
+  <!-- Globe latitude lines -->
+  <ellipse cx="100" cy="100" rx="42" ry="16" fill="none" stroke="url(#globeGrad)" stroke-width="1.5" opacity="0.7" />
+  <ellipse cx="100" cy="100" rx="42" ry="32" fill="none" stroke="url(#globeGrad)" stroke-width="1.2" opacity="0.5" />
+  <!-- Globe longitude lines -->
+  <ellipse cx="100" cy="100" rx="16" ry="42" fill="none" stroke="url(#globeGrad)" stroke-width="1.5" opacity="0.7" />
+  <!-- Globe meridian -->
+  <line x1="100" y1="58" x2="100" y2="142" stroke="url(#globeGrad)" stroke-width="1.5" opacity="0.6" />
+  <line x1="58" y1="100" x2="142" y2="100" stroke="url(#globeGrad)" stroke-width="1.5" opacity="0.6" />
+  <!-- Lock icon in center -->
+  <rect x="90" y="96" width="20" height="16" rx="3" fill="white" opacity="0.95" />
+  <path d="M95 96 L95 89 Q95 82 100 82 Q105 82 105 89 L105 96"
+        fill="none" stroke="white" stroke-width="2.5" opacity="0.95" />
+  <circle cx="100" cy="105" r="2.5" fill="#0F52BA" />
+  <!-- Checkmark accent -->
+  <path d="M155 50 L162 57 L175 40" fill="none" stroke="#34D399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

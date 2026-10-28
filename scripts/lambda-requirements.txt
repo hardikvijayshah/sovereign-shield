@@ -1,0 +1,16 @@
+# Pinned runtime dependencies for the deployed deterministic Lambda package.
+# Installed with --no-deps, so this file must list the complete closure.
+# The agent SDK (strands-agents) is intentionally excluded: the deployed scan
+# path never invokes Bedrock. Hash-locking is a Phase 4 release requirement.
+pydantic==2.12.4
+pydantic-core==2.41.5
+annotated-types==0.7.0
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+boto3==1.42.88
+botocore==1.42.88
+s3transfer==0.16.0
+jmespath==1.1.0
+urllib3==2.8.0
+python-dateutil==2.8.2
+six==1.17.0

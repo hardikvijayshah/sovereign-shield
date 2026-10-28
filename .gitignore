@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+.env
+
+# CDK
+cdk/cdk.out/
+cdk/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Visualizations (regenerate with generate_network_maps.py)
+visualizations/*.html
+
+# Test / coverage
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Built customer releases (scripts/build_release.py)
+release/
+
+# Node
+node_modules/
+
+# Tool caches and local scratch
+.ruff_cache/
+pytest-cache-files-*/
+.tmp/
+%SystemDrive%/
+
+# Personal Claude Code settings
+.claude/settings.local.json

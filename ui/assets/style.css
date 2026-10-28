@@ -1,0 +1,170 @@
+/* ── Sovereign Shield Streamlit Theme ── */
+
+/* Global */
+.stApp { background-color: #FFFFFF; }
+.block-container { padding-top: 2rem; }
+
+/* Header bar */
+header[data-testid="stHeader"] {
+    background: linear-gradient(90deg, #0F52BA 0%, #1E90FF 100%);
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%);
+    border-right: 1px solid #E2E8F0;
+}
+section[data-testid="stSidebar"] .stMarkdown h1,
+section[data-testid="stSidebar"] .stMarkdown h2,
+section[data-testid="stSidebar"] .stMarkdown h3 {
+    color: #0F52BA;
+}
+section[data-testid="stSidebar"] hr {
+    margin: 12px 0 8px 0;
+    border-color: #E2E8F0;
+}
+
+/* Sidebar radio nav — style as a clean nav list */
+section[data-testid="stSidebar"] div[role="radiogroup"] {
+    gap: 2px !important;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label {
+    background: transparent;
+    border-radius: 8px;
+    padding: 7px 12px !important;
+    margin: 0 !important;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background: rgba(15, 82, 186, 0.07);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] {
+    background: linear-gradient(135deg, #0F52BA, #1E90FF) !important;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] p,
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] div {
+    color: #FFFFFF !important;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label p {
+    font-size: 0.88rem !important;
+    font-weight: 500;
+    color: #334155;
+    margin: 0;
+}
+
+/* Metric cards */
+div[data-testid="stMetric"] {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(15, 82, 186, 0.06);
+}
+div[data-testid="stMetric"] label {
+    color: #64748B !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    color: #0F172A !important;
+    font-weight: 700 !important;
+}
+
+/* Buttons — main content area */
+.stMainBlockContainer .stButton > button {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.2s;
+}
+.stMainBlockContainer .stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 82, 186, 0.15);
+}
+button[kind="primary"] {
+    background: linear-gradient(135deg, #0F52BA, #1E90FF) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* Expanders */
+div[data-testid="stExpander"] {
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+div[data-testid="stExpander"] summary {
+    font-weight: 600;
+    color: #1E293B;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+    background: #F0F4F8;
+    border-radius: 10px;
+    padding: 4px;
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 8px;
+    font-weight: 500;
+    color: #64748B;
+}
+.stTabs [aria-selected="true"] {
+    background: white !important;
+    color: #0F52BA !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Tables */
+.stDataFrame { border-radius: 10px; overflow: hidden; }
+
+/* Severity badges */
+.severity-critical {
+    background: #FEE2E2; color: #DC2626; padding: 2px 10px;
+    border-radius: 20px; font-weight: 600; font-size: 0.8rem;
+}
+.severity-high {
+    background: #FFEDD5; color: #EA580C; padding: 2px 10px;
+    border-radius: 20px; font-weight: 600; font-size: 0.8rem;
+}
+.severity-medium {
+    background: #FEF3C7; color: #D97706; padding: 2px 10px;
+    border-radius: 20px; font-weight: 600; font-size: 0.8rem;
+}
+.severity-low {
+    background: #DCFCE7; color: #16A34A; padding: 2px 10px;
+    border-radius: 20px; font-weight: 600; font-size: 0.8rem;
+}
+
+/* Info / success / warning / error boxes */
+div[data-testid="stAlert"] { border-radius: 10px; }
+
+/* Code blocks */
+.stCodeBlock { border-radius: 10px; }
+
+/* Divider */
+hr { border-color: #E2E8F0; }
+
+/* Forms */
+div[data-testid="stForm"] {
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    background: #FAFBFC;
+}
+
+/* Download buttons */
+.stDownloadButton > button {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
